@@ -14,7 +14,7 @@
 
 ### ImageOptions
 
--  for JPEG, BMP, PNG, TIFF, GIF formats
+-  for JPEG, BMP, PNG, TIFF, GIF, WEBP formats
 
 | Field             | Type    | Description                                                 | Note     |
 |-------------------|---------|-------------------------------------------------------------|----------|

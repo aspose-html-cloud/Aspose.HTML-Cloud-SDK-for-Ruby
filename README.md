@@ -3,7 +3,7 @@
 AsposeHtml - the Ruby gem for the Aspose.HTML for Cloud API Reference
 
 - API version: 4.0
-- Package version: 22.12.1
+- Package version: 25.12.1
 
 ## Requirements
 - Ruby >= 1.9
@@ -25,15 +25,15 @@ gem build aspose_html_cloud.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./aspose_html_cloud-22.12.1.gem
+gem install ./aspose_html_cloud-25.12.1.gem
 ```
-(for development, run `gem install --dev ./aspose_html_cloud-22.12.1.gem` to install the development dependencies)
+(for development, run `gem install --dev ./aspose_html_cloud-25.12.1.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'aspose_html_cloud', '~> 22.12.1'
+    gem 'aspose_html_cloud', '~> 25.12.1'
 
 ### Load from git
 
@@ -57,11 +57,11 @@ ruby -Ilib aspose_html_cloud.rb
 ## Getting Started
 
 ### Possible conversions:
-- HTML -> PDF, XPS, DOCX, MD, MHTML, JPEG, BMP, PNG, TIFF, GIF
-- EPUB -> PDF, XPS, DOCX, JPEG, BMP, PNG, TIFF, GIF
-- MD -> PDF, XPS, DOCX, HTML, MHTML, JPEG, BMP, PNG, TIFF, GIF
-- MHTML -> PDF, XPS, DOCX, JPEG, BMP, PNG, TIFF, GIF
-- SVG -> PDF, XPS, JPEG, BMP, PNG, TIFF, GIF
+- HTML -> PDF, XPS, DOCX, MD, MHTML, JPEG, BMP, PNG, TIFF, GIF, WEBP
+- EPUB -> PDF, XPS, DOCX, JPEG, BMP, PNG, TIFF, GIF, WEBP
+- MD -> PDF, XPS, DOCX, HTML, MHTML, JPEG, BMP, PNG, TIFF, GIF, WEBP
+- MHTML -> PDF, XPS, DOCX, JPEG, BMP, PNG, TIFF, GIF, WEBP
+- SVG -> PDF, XPS, JPEG, BMP, PNG, TIFF, GIF, WEBP
 - JPEG, BMP, PNG, TIFF, GIF -> SVG
 
 ### Possible vectorization:
@@ -132,7 +132,7 @@ All URIs are relative to *https://api.aspose.cloud/v4.0*
 | Options                                                          | Description                                       |
 |------------------------------------------------------------------|---------------------------------------------------|
 | [**PDFOptions**](docs/ConversionOptions.md#PDFOptions)           | Convert to the PDF format.                        |
-| [**ImageOptions**](docs/ConversionOptions.md#ImageOptions)       | Convert to images (JPEG, PNG, GIF, TIFF, BMP).    |
+| [**ImageOptions**](docs/ConversionOptions.md#ImageOptions)       | Convert to images (JPEG, PNG, GIF, TIFF, BMP, WEBP). |
 | [**XPSOptions**](docs/ConversionOptions.md#XPSOptions)           | Convert to the XPS format.                        |
 | [**DocOptions**](docs/ConversionOptions.md#DocOptions)           | Convert to the DOCX format.                       |
 | [**SvgOptions**](docs/ConversionOptions.md#SvgOptions)           | Trace images to the SVG format.                   |

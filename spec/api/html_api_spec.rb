@@ -68,7 +68,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert local to local html to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + 'locToLocImg.' + ext
@@ -92,7 +92,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + 'locToLocImgOpt.' + ext
@@ -127,7 +127,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert local to storage html to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + '/locToStorImg.' + ext
@@ -151,7 +151,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + '/locToStorImgOpt.' + ext
@@ -191,7 +191,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert storage to local html to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + 'storToLocImg.' + ext
@@ -215,7 +215,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + 'storToLocImgOpt.' + ext
@@ -255,7 +255,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert storage to storage html to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + 'storToStorImg.' + ext
@@ -279,7 +279,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert html to " + ext do
 
           dst = dst_dir + 'storToStorImgOpt.' + ext
@@ -315,7 +315,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert url to local image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert url to " + ext do
 
           dst = dst_dir + 'urlLocImg.' + ext
@@ -339,7 +339,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert url to " + ext do
 
           dst = dst_dir + 'urlLocImgOpt.' + ext
@@ -374,7 +374,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert url to storage image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert url to " + ext do
 
           dst = dst_dir + '/urlStorImg.' + ext
@@ -398,7 +398,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert url to " + ext do
 
           dst = dst_dir + '/urlStorImgOpt.' + ext
@@ -458,7 +458,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert local to local markdown to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert markdown to " + ext do
 
           dst = dst_dir + 'locToLocMDImg.' + ext
@@ -482,7 +482,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert markdown to " + ext do
 
           dst = dst_dir + 'locToLocMDImgOpt.' + ext
@@ -542,7 +542,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert local to local MHTML to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert MHTML to " + ext do
 
           dst = dst_dir + 'locToLocMHTMLImg.' + ext
@@ -566,7 +566,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert MHTML to " + ext do
 
           dst = dst_dir + 'locToLocMHTMLImgOpt.' + ext
@@ -626,7 +626,7 @@ describe 'Test html_api_V4' do
 
     describe 'convert local to local SVG to image' do
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert SVG to " + ext do
 
           dst = dst_dir + 'locToLocSVGImg.' + ext
@@ -650,7 +650,7 @@ describe 'Test html_api_V4' do
         bottom_margin: 50
       }
 
-      %w[jpeg jpg bmp png tiff tif gif].each { |ext|
+      %w[jpeg jpg bmp png tiff tif gif webp].each { |ext|
         it "Convert SVG to " + ext do
 
           dst = dst_dir + 'locToLocSVGImgOpt.' + ext
