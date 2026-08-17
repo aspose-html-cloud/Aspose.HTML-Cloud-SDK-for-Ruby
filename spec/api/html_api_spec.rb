@@ -104,6 +104,47 @@ describe 'Test html_api_V4' do
         end
       }
     end
+
+    describe 'convert local to local html to pdf with pdf metadata' do
+
+      it "Convert html to pdf with full pdf metadata" do
+        opts = {
+          pdf_metadata: {
+            title: 'Monthly Report',
+            author: 'Jane Doe',
+            subject: 'Q3 Results',
+            keywords: 'report, q3, pdf',
+            creator: 'My Application',
+            producer: 'My Company',
+            creation_date: '2024-01-15T10:30:00Z',
+            modification_date: '2024-06-20T18:45:00Z'
+          }
+        }
+
+        dst = dst_dir + 'locToLocPdfMetaFull.pdf'
+        answer = @html_api.convert_local_to_local(src, dst, opts)
+
+        expect(answer.code).to eql(200)
+        expect(answer.status).to eql('completed')
+        expect(File.exist?(answer.file)).to be_truthy
+      end
+
+      it "Convert html to pdf with partial pdf metadata" do
+        opts = {
+          pdf_metadata: {
+            title: 'My Document',
+            author: 'John Doe'
+          }
+        }
+
+        dst = dst_dir + 'locToLocPdfMetaPartial.pdf'
+        answer = @html_api.convert_local_to_local(src, dst, opts)
+
+        expect(answer.code).to eql(200)
+        expect(answer.status).to eql('completed')
+        expect(File.exist?(answer.file)).to be_truthy
+      end
+    end
   end
 
   describe 'convert html local to storage' do
@@ -654,6 +695,31 @@ describe 'Test html_api_V4' do
         it "Convert SVG to " + ext do
 
           dst = dst_dir + 'locToLocSVGImgOpt.' + ext
+          answer = @html_api.convert_local_to_local(src, dst, opts)
+
+          expect(answer.code).to eql(200)
+          expect(answer.status).to eql('completed')
+          expect(File.exist?(answer.file)).to be_truthy
+        end
+      }
+    end
+
+    describe 'convert local to local SVG to image with resolution' do
+
+      opts = {
+        width: 793,
+        height: 174,
+        resolution: 300,
+        left_margin: 0,
+        right_margin: 0,
+        top_margin: 0,
+        bottom_margin: 0
+      }
+
+      %w[jpeg bmp png tiff gif webp].each { |ext|
+        it "Convert SVG to " + ext + " at 300 DPI" do
+
+          dst = dst_dir + 'locToLocSVGImgRes300.' + ext
           answer = @html_api.convert_local_to_local(src, dst, opts)
 
           expect(answer.code).to eql(200)

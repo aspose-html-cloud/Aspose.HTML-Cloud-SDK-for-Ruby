@@ -3,7 +3,7 @@
 AsposeHtml - the Ruby gem for the Aspose.HTML for Cloud API Reference
 
 - API version: 4.0
-- Package version: 25.12.1
+- Package version: 26.8.1
 
 ## Requirements
 - Ruby >= 1.9
@@ -25,15 +25,15 @@ gem build aspose_html_cloud.gemspec
 Then either install the gem locally:
 
 ```shell
-gem install ./aspose_html_cloud-25.12.1.gem
+gem install ./aspose_html_cloud-26.8.1.gem
 ```
-(for development, run `gem install --dev ./aspose_html_cloud-25.12.1.gem` to install the development dependencies)
+(for development, run `gem install --dev ./aspose_html_cloud-26.8.1.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'aspose_html_cloud', '~> 25.12.1'
+    gem 'aspose_html_cloud', '~> 26.8.1'
 
 ### Load from git
 
@@ -137,6 +137,7 @@ All URIs are relative to *https://api.aspose.cloud/v4.0*
 | [**DocOptions**](docs/ConversionOptions.md#DocOptions)           | Convert to the DOCX format.                       |
 | [**SvgOptions**](docs/ConversionOptions.md#SvgOptions)           | Trace images to the SVG format.                   |
 | [**MarkdownOptions**](docs/ConversionOptions.md#MarkdownOptions) | Convert the HTML document to the markdown format. |
+| [**PdfMetadata**](docs/ConversionOptions.md#PdfMetadata)         | Set PDF `/Info` metadata (PDF output only).       |
 
 
 ## vectorizationOptions

@@ -234,6 +234,24 @@ module AsposeHtml
     # @option options [Float] :right_margin Right resulting margin. For images in pixels, for PDF, XPS, DOCX in inches.
     # @option options [Float] :top_margin Top resulting margin. For images in pixels, for PDF, XPS, DOCX in inches.
     # @option options [Float] :bottom_margin Bottom resulting margin. For images in pixels, for PDF, XPS, DOCX in inches.
+    # @option options [Integer] :resolution DPI for image outputs (PNG, JPEG, BMP, GIF, TIFF, WEBP). Default 96. Ignored for non-image outputs.
+    # @option options [String] :background CSS background like '#FF0000'. For conversion from SVG only.
+    # @option options [Integer] :jpeg_quality JPEG quality in percent (PDF output).
+    # @option options [Boolean] :use_git Use git-flavored markdown (Markdown output).
+    # @option options [Float] :error_threshold Vectorization: max deviation of points to fitted curve. Default 30.
+    # @option options [Integer] :max_iterations Vectorization: number of iterations for least-squares approximation. Default 30.
+    # @option options [Integer] :colors_limit Vectorization: max number of colors used to quantize an image. Default 25.
+    # @option options [Float] :line_width Vectorization: line width, affected by graphics scale. Default 1.
+    # @option options [Hash] :pdf_metadata PDF /Info dictionary metadata. Applied only when output is PDF; ignored otherwise.
+    #   Accepted keys (all optional):
+    #     - :title [String]
+    #     - :author [String]
+    #     - :subject [String]
+    #     - :keywords [String]
+    #     - :creator [String]
+    #     - :producer [String]
+    #     - :creation_date [String] ISO 8601 datetime, e.g. "2024-01-15T10:30:00Z"
+    #     - :modification_date [String] ISO 8601 datetime
     # @param storage_name Storage name. Default storage is nil.
     # @return [OperationResult] Result of operation. See OperationResult object.
     def convert(src, dst, src_in_local, dst_in_local, is_url, options=nil, storage_name=nil)
@@ -286,6 +304,22 @@ module AsposeHtml
         post_body[:'options'][:'max_iterations'] = options[:'max_iterations'] unless options[:'max_iterations'].nil?
         post_body[:'options'][:'colors_limit'] = options[:'colors_limit'] unless options[:'colors_limit'].nil?
         post_body[:'options'][:'line_width'] = options[:'line_width'] unless options[:'line_width'].nil?
+
+        # PDF metadata is a top-level property on ConversionRequest.
+        # Only applies when the output format is PDF; server ignores it otherwise.
+        pdf_metadata = options[:'pdf_metadata']
+        unless pdf_metadata.nil?
+          meta = {}
+          meta[:'title']            = pdf_metadata[:'title']             unless pdf_metadata[:'title'].nil?
+          meta[:'author']           = pdf_metadata[:'author']            unless pdf_metadata[:'author'].nil?
+          meta[:'subject']          = pdf_metadata[:'subject']           unless pdf_metadata[:'subject'].nil?
+          meta[:'keywords']         = pdf_metadata[:'keywords']          unless pdf_metadata[:'keywords'].nil?
+          meta[:'creator']          = pdf_metadata[:'creator']           unless pdf_metadata[:'creator'].nil?
+          meta[:'producer']         = pdf_metadata[:'producer']          unless pdf_metadata[:'producer'].nil?
+          meta[:'creationDate']     = pdf_metadata[:'creation_date']     unless pdf_metadata[:'creation_date'].nil?
+          meta[:'modificationDate'] = pdf_metadata[:'modification_date'] unless pdf_metadata[:'modification_date'].nil?
+          post_body[:'pdfMetadata'] = meta unless meta.empty?
+        end
       end
 
       query_params = {}
