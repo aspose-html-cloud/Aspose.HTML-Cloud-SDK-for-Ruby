@@ -29,11 +29,19 @@
 # load the gem
 require 'aspose_html_cloud'
 
+# Credentials come from the environment so CI (or the SDK test agent) can run
+# against its own subscription; the literals stay as a local fallback. An empty
+# variable counts as unset, otherwise a blank .env would break the fallback.
+def credential(names, fallback)
+  names.each { |name| return ENV[name] unless ENV[name].to_s.empty? }
+  fallback
+end
+
 CONFIG = {
   "basePath": "https://api.aspose.cloud/v4.0",
   "authPath": "https://api.aspose.cloud/connect/token",
-  "apiKey": "c8dda7d6445d82635b8797d1c8edd153",
-  "appSID": "2225baa2-097b-4731-9831-d0d56c28230f",
+  "apiKey": credential(%w[ASPOSE_CLIENT_SECRET APP_KEY], "c8dda7d6445d82635b8797d1c8edd153"),
+  "appSID": credential(%w[ASPOSE_CLIENT_ID APP_SID], "2225baa2-097b-4731-9831-d0d56c28230f"),
   "debug": true
 }
 # from storage api
@@ -55,6 +63,9 @@ end
 
 def save_to_test_dir(answer, dst_file)
   src = answer.path
+  # The directory is not kept in the repository, so create it on demand
+  # instead of letting File.realpath raise on a missing path.
+  FileUtils.mkdir_p(__dir__ + '/../testresult')
   dst = File.realpath(__dir__ + '/../testresult')
   dst << "/" << dst_file
   FileUtils.mv(src, dst)
