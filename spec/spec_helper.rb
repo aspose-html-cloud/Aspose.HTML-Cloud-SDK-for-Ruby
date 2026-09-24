@@ -29,19 +29,20 @@
 # load the gem
 require 'aspose_html_cloud'
 
-# Credentials come from the environment so CI (or the SDK test agent) can run
-# against its own subscription; the literals stay as a local fallback. An empty
-# variable counts as unset, otherwise a blank .env would break the fallback.
-def credential(names, fallback)
+# Credentials are never stored in the repository. Set ASPOSE_CLIENT_ID and
+# ASPOSE_CLIENT_SECRET (or the APP_SID / APP_KEY aliases) before running the
+# suite; the SDK test agent does this automatically. An empty variable counts
+# as unset.
+def credential(names)
   names.each { |name| return ENV[name] unless ENV[name].to_s.empty? }
-  fallback
+  raise "Missing Aspose Cloud credentials: set one of #{names.join(' / ')} in the environment."
 end
 
 CONFIG = {
   "basePath": "https://api.aspose.cloud/v4.0",
   "authPath": "https://api.aspose.cloud/connect/token",
-  "apiKey": credential(%w[ASPOSE_CLIENT_SECRET APP_KEY], "c8dda7d6445d82635b8797d1c8edd153"),
-  "appSID": credential(%w[ASPOSE_CLIENT_ID APP_SID], "2225baa2-097b-4731-9831-d0d56c28230f"),
+  "apiKey": credential(%w[ASPOSE_CLIENT_SECRET APP_KEY]),
+  "appSID": credential(%w[ASPOSE_CLIENT_ID APP_SID]),
   "debug": true
 }
 # from storage api
