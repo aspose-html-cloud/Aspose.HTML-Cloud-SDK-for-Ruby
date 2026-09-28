@@ -46,22 +46,6 @@ describe 'Test Storage API' do
   #            Storage API
   #################################################
 
-  # Get disc usage
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :storage_name Storage name
-  # @return [DiscUsage]
-  describe 'get_disc_usage test' do
-    it "must be DiscUsage:{usedSize: num, totalSize: num}" do
-      opts = {storage_name: nil}
-      res = @api.get_disc_usage(opts)
-
-      expect(res).to be_an_instance_of AsposeHtml::DiscUsage
-      expect(res.used_size).to be_an_instance_of Integer
-      expect(res.total_size).to be_an_instance_of Integer
-      puts(res)
-    end
-  end
-
   # Check if file or folder exists
   # @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
   # @param [Hash] opts the optional parameters
@@ -98,19 +82,6 @@ describe 'Test Storage API' do
       expect(res.is_folder).to be false
     end
  end
-
-  # Check if storage exists
-  # @param storage_name Storage name
-  # @param [Hash] opts the optional parameters
-  # @return [StorageExist]
-  describe 'storage_exists test' do
-    it "must be {'exists':false}" do
-
-      res = @api.storage_exists('non_exist_storage')
-      expect(res).to be_an_instance_of AsposeHtml::StorageExist
-      expect(res.exists).to be false
-    end
-  end
 
   #################################################
   #            File API

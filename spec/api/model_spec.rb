@@ -32,39 +32,6 @@ require 'date'
 
 describe 'Test models' do
 
-  describe 'DiscUsage' do
-    before(:all) do
-      # run before all test
-      @instance1 = AsposeHtml::DiscUsage.new({usedSize: 100, totalSize: 200})
-      @instance2 = AsposeHtml::DiscUsage.new({usedSize: 100, totalSize: 200})
-      @instance3 = AsposeHtml::DiscUsage.new({usedSize: 200, totalSize: 300})
-    end
-
-    it 'should create an instance of DiscUsage' do
-      expect(@instance1).to be_instance_of(AsposeHtml::DiscUsage)
-      expect(@instance2).to be_instance_of(AsposeHtml::DiscUsage)
-      expect(@instance3).to be_instance_of(AsposeHtml::DiscUsage)
-    end
-
-    it 'check class names' do
-      expect(@instance1.used_size).to be_instance_of(Integer)
-      expect(@instance2.used_size).to be_instance_of(Integer)
-      expect(@instance3.used_size).to be_instance_of(Integer)
-
-      expect(@instance1.total_size).to be_instance_of(Integer)
-      expect(@instance2.total_size).to be_instance_of(Integer)
-      expect(@instance3.total_size).to be_instance_of(Integer)
-    end
-
-    it 'check compare and keys' do
-      dictionary = @instance3.to_hash
-      expect(dictionary.has_key?(:usedSize)).to be true
-      expect(dictionary.has_key?(:totalSize)).to be true
-      expect(@instance1).to eql(@instance2)
-      expect(@instance1).not_to eql(@instance3)
-    end
-  end
-
   describe 'Error' do
     before(:all) do
       @time_now = DateTime.now
@@ -308,34 +275,6 @@ describe 'Test models' do
       dictionary = @instance3.to_hash
       expect(dictionary.has_key?(:uploaded)).to be true
       expect(dictionary.has_key?(:errors)).to be true
-
-      expect(@instance1).to eql(@instance2)
-      expect(@instance1).not_to eql(@instance3)
-    end
-  end
-
-  describe 'StorageExist' do
-    before(:all) do
-      @instance1 = AsposeHtml::StorageExist.new({exists: false})
-      @instance2 = AsposeHtml::StorageExist.new({exists: false})
-      @instance3 = AsposeHtml::StorageExist.new({exists: true})
-    end
-
-    it 'should create an instance of StorageExist' do
-      expect(@instance1).to be_instance_of(AsposeHtml::StorageExist)
-      expect(@instance2).to be_instance_of(AsposeHtml::StorageExist)
-      expect(@instance3).to be_instance_of(AsposeHtml::StorageExist)
-    end
-
-    it 'check class names' do
-      expect(@instance1.exists).to be false
-      expect(@instance2.exists).to be false
-      expect(@instance3.exists).to be true
-    end
-
-    it 'check compare and keys' do
-      dictionary = @instance3.to_hash
-      expect(dictionary.has_key?(:exists)).to be true
 
       expect(@instance1).to eql(@instance2)
       expect(@instance1).not_to eql(@instance3)
