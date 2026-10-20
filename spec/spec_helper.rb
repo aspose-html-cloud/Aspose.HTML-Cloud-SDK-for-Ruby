@@ -28,6 +28,11 @@
 
 # load the gem
 require 'aspose_html_cloud'
+require 'fileutils'
+
+# testresult/ is not kept in the repository, but spec files resolve it with
+# File.realpath while they are loaded, so it must exist before any of them.
+FileUtils.mkdir_p(File.expand_path('../testresult', __dir__))
 
 # Credentials are never stored in the repository. Set ASPOSE_CLIENT_ID and
 # ASPOSE_CLIENT_SECRET (or the APP_SID / APP_KEY aliases) before running the
