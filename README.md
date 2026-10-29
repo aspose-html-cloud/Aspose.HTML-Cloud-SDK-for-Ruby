@@ -35,6 +35,22 @@ Finally add this to the Gemfile:
 
     gem 'aspose_html_cloud', '~> 26.8.1'
 
+### Release to RubyGems
+
+Maintainers need RubyGems ownership or push permission and configured credentials;
+complete MFA when required. Never commit credentials or pass API keys on the command line.
+
+1. Choose an unpublished version and update the gemspec, this README and the
+  `x-aspose-client-version` header in `lib/aspose_html_cloud/api_client.rb`.
+2. Run the test suite with the required Aspose Cloud credentials in the environment.
+3. Build a fresh gem with `gem build aspose_html_cloud.gemspec` and inspect its contents
+  with `gem specification ./aspose_html_cloud-<version>.gem files`. Check the package
+  for credentials before publication; do not reuse an old build.
+4. Commit and push the release changes, then publish with
+  `gem push ./aspose_html_cloud-<version>.gem`.
+5. Verify the version on RubyGems and install it in a clean environment. Create and
+  push an annotated `v<version>` tag after successful publication.
+
 ### Load from git
 
     git clone https://github.com/aspose-html-cloud/aspose-html-cloud-ruby.git
