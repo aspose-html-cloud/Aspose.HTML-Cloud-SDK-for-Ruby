@@ -958,4 +958,81 @@ describe 'Test html_api_V4' do
     end
   end
 
+  # Scenarios ported from other SDKs: the result must land exactly where the
+  # caller asked for it, not wherever the API reports it put the file.
+  describe 'cross-SDK output location' do
+
+    describe 'convert storage to storage to the requested path' do
+      it 'Convert storage to storage lands at the requested path' do
+        folder = 'RubyTests/RequestedPath'
+        uploaded_file = File.realpath(__dir__ + '/../../testdata') + '/test1.html'
+
+        res = @storage_api.upload_file(folder, uploaded_file)
+        expect(res.uploaded.length).to eql(1)
+        expect(res.errors.length).to eql(0)
+
+        # Passed the way a user would write it: no leading '/'.
+        dst = folder + '/storToStorRequested.pdf'
+        answer = @html_api.convert_storage_to_storage(folder + '/test1.html', dst, nil)
+
+        expect(answer.code).to eql(200)
+        expect(answer.status).to eql('completed')
+
+        exist = @storage_api.object_exists(dst)
+        expect(exist.exists).to be(true), "expected the result at #{dst}, the API reported #{answer.file}"
+        expect(exist.is_folder).to be false
+      end
+    end
+
+    describe 'vectorize storage to storage to the requested path' do
+      it 'Vectorize storage to storage lands at the requested path' do
+        folder = 'RubyTests/RequestedPath'
+        uploaded_file = File.realpath(__dir__ + '/../../testdata') + '/car.png'
+
+        res = @storage_api.upload_file(folder, uploaded_file)
+        expect(res.uploaded.length).to eql(1)
+        expect(res.errors.length).to eql(0)
+
+        dst = folder + '/vectorizeRequested.svg'
+        answer = @html_api.vectorize_storage_to_storage(folder + '/car.png', dst, nil)
+
+        expect(answer.code).to eql(200)
+        expect(answer.status).to eql('completed')
+
+        exist = @storage_api.object_exists(dst)
+        expect(exist.exists).to be(true), "expected the result at #{dst}, the API reported #{answer.file}"
+        expect(exist.is_folder).to be false
+      end
+    end
+
+    describe 'convert multi-page html to image returns a zip named after the output' do
+
+      src = File.realpath(__dir__ + '/../../testdata') + '/html_file_long.html'
+      dst_dir = File.realpath(__dir__ + '/../../testresult') + '/'
+
+      opts = {
+        width: 1000,
+        height: 300,
+        left_margin: 10,
+        right_margin: 10,
+        top_margin: 10,
+        bottom_margin: 10
+      }
+
+      %w[png jpeg bmp gif].each { |ext|
+        it "Convert multi-page html to " + ext + " zip name" do
+
+          dst = dst_dir + 'testfile.' + ext
+          answer = @html_api.convert_local_to_local(src, dst, opts)
+
+          expect(answer.code).to eql(200)
+          expect(answer.status).to eql('completed')
+          expect(File.exist?(answer.file)).to be_truthy
+          expect(File.size(answer.file)).to be > 0
+          expect(File.basename(answer.file).downcase).to include("testfile.#{ext}.zip")
+        end
+      }
+    end
+  end
+
 end
