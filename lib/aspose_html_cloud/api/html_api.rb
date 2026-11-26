@@ -265,8 +265,7 @@ module AsposeHtml
         file_in_storage = src
       end
 
-      out_file = File.basename(dst)
-      out_file = dst unless dst_in_local
+      out_file = dst_in_local ? File.basename(dst) : storage_output_path(dst)
 
       input_format = 'html'
       input_format = get_input_format(src) unless is_url
@@ -387,6 +386,16 @@ module AsposeHtml
                                                         :body => post_body,
                                                         :return_type => 'OperationResult')
 
+    end
+
+    # The API keeps the folder of outputFile only when the path is absolute
+    # ("/folder/file.pdf") or has a scheme ("storage://..."). A relative path
+    # such as "folder/file.pdf" is reduced to the file name and written to a
+    # temporary "<guid>/" folder, so make storage destinations absolute.
+    def storage_output_path(path)
+      path = path.to_s
+      return path if path.include?('://') || path.start_with?('/')
+      '/' + path
     end
 
     def get_input_format(path)
